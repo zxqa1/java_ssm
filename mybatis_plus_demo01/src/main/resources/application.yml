@@ -1,0 +1,16 @@
+server:
+  port: 80
+spring:
+  datasource:
+    driver-class-name: com.alibaba.druid.proxy.DruidDriver
+    url: jdbc:mysql://localhost:3306/ssm?serverTimezone=UTC
+    username: root
+    password: root
+  main:
+    banner-mode: off
+
+
+# ¿ªÆô mybatis_plus ÈÕÖ¾
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

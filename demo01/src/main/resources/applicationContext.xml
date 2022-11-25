@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd
+">
+
+        <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
+            <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
+            <property name="url" value="jdbc:mysql://localhost:3306/world"/>
+            <property name="username" value="root"/>
+            <property name="password" value="root"/>
+        </bean>
+
+    <!--
+    加载properties文件步骤
+    1. 开启命名空间 context
+        xmlns:context="http://www.springframework.org/schema/context"
+
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+    2. 加载文件
+        <context:property-placeholder location="properties.properties"/>
+    3. 使用属性占位符 ${} 读取 properties 文件中的属性
+    -->
+    <context:property-placeholder location="properties.properties"/>
+
+    <bean class="com.alibaba.druid.pool.DruidDataSource">
+        <property name="driverClassName" value="${driverClassName}"/>
+        <property name="url" value="${url}"/>
+        <property name="username" value="${username}"/>
+        <property name="password" value="${password}"/>
+    </bean>
+
+<!--    java bean 扫描 @Component-->
+    <context:component-scan base-package="com.it"/>
+</beans>
